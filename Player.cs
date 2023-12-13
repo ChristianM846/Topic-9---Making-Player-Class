@@ -86,6 +86,13 @@ namespace Topic_9___Making_Player_Class
             _location.Y -= (int)_speed.Y;
         }
 
+        public void Grow()
+        {
+            _location.Width += 1;
+            _location.Height += 1;
+        }
+
+
 
 
     }

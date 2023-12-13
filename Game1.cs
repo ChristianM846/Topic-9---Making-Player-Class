@@ -96,6 +96,7 @@ namespace Topic_9___Making_Player_Class
             {
                 if (amoeba.Collide(food[i]))
                 {
+                    amoeba.Grow();
                     food.RemoveAt(i);
                     i--;
                 }
