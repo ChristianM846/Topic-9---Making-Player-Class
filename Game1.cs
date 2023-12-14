@@ -41,7 +41,7 @@ namespace Topic_9___Making_Player_Class
             food.Add(new Rectangle(50, 200, 10, 10));
 
             base.Initialize();
-            amoeba = new Player(amoebaTexture, 10, 10);
+            amoeba = new Player(amoebaTexture, 10, 10, new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight));
 
 
         }
@@ -82,7 +82,7 @@ namespace Topic_9___Making_Player_Class
                 amoeba.HSpeed = -3;
             }
 
-            amoeba.Update();
+            amoeba.Update(_graphics);
 
             foreach (Rectangle barrier in barriers)
             {
@@ -101,7 +101,7 @@ namespace Topic_9___Making_Player_Class
                     i--;
                 }
             }
-
+            
 
             base.Update(gameTime);
         }

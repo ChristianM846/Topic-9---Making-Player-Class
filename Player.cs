@@ -27,18 +27,20 @@ namespace Topic_9___Making_Player_Class
         private int _baseDefence;
         private int _defense;
         private int _level;
+        private Vector2 _screenSize;
 
 
         private Texture2D _texture;
         private Rectangle _location;
         private Vector2 _speed;
 
-        public Player(Texture2D texture, int x, int y)
+        public Player(Texture2D texture, int x, int y, Vector2 screenSize)
         {
             _texture = texture;
             _location = new Rectangle(x, y, 30, 30);
             _speed = new Vector2();
             _health = 100;
+            _screenSize = screenSize;
         }
 
         public float HSpeed
@@ -53,6 +55,12 @@ namespace Topic_9___Making_Player_Class
             set { _speed.Y = value; }
         }
 
+        public Rectangle Location
+        {
+            get { return _location; }
+        }
+
+
         public int Health
         {
             get { return _health; }
@@ -61,13 +69,24 @@ namespace Topic_9___Making_Player_Class
 
         private void Move()
         {
-            _location.X += (int)_speed.X;
-            _location.Y += (int)_speed.Y;
+            _location.Offset(_speed);
+
         }
 
-        public void Update()
+        public void Update(GraphicsDeviceManager graphics)
         {
             Move();
+
+            if (_location.Y <= 0 || _location.Bottom >= graphics.PreferredBackBufferHeight)
+            {
+                _location.Y -= (int)_speed.Y;
+            }
+
+            if (_location.X <= 0 || _location.Right >= graphics.PreferredBackBufferWidth)
+            {
+                _location.X -= (int)_speed.X;
+            }
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
